@@ -27,7 +27,7 @@ node['openssh']['package_name'].each do |name|
 end
 
 template node['openssh']['revoked_keys_file'] do
-  source 'revoked_keys'
+  source 'revoked_keys.erb'
   mode '0644'
   owner 'root'
   group  node['openssh']['rootgroup']
