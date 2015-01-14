@@ -26,6 +26,13 @@ node['openssh']['package_name'].each do |name|
   package name
 end
 
+template node['openssh']['revoked_keys_file'] do
+  source 'revoked_keys'
+  mode '0644'
+  owner 'root'
+  group  node['openssh']['rootgroup']
+end
+
 service_provider = Chef::Provider::Service::Upstart if 'ubuntu' == node['platform'] &&
   Chef::VersionConstraint.new('>= 12.04').include?(node['platform_version'])
 
