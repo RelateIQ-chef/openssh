@@ -20,7 +20,8 @@
 # Attributes are commented out using the default config file values.
 # Uncomment the ones you need, or set attributes in a role.
 #
-
+default['openssh']['revoked_keys_file'] = '/etc/ssh/revoked_keys'
+default['openssh']['revoked_keys'] = %w()
 default['openssh']['package_name'] = case node['platform_family']
                                      when 'rhel', 'fedora'
                                        %w[openssh-clients openssh]
@@ -140,3 +141,4 @@ default['openssh']['server']['use_p_a_m'] = 'yes'
 # default['openssh']['server']['banner'] = 'none'
 # default['openssh']['server']['subsystem'] =	'sftp	/usr/libexec/sftp-server'
 default['openssh']['server']['match'] = {}
+default['openssh']['server']['revoked_keys'] = node['openssh']['revoked_keys_file']
